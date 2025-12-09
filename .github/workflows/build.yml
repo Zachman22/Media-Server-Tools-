@@ -1,0 +1,116 @@
+name: Build x64 Executable
+
+on:
+  push:
+    branches: [ main, copilot/build-x64-executable ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-windows-x64:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: x86_64-pc-windows-msvc
+        override: true
+    
+    - name: Build Rust x64 executables
+      run: cargo build --release --target x86_64-pc-windows-msvc
+    
+    - name: Build C++ Dashboard
+      run: |
+        cd cpp
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake --build . --config Release
+    
+    - name: Upload media-server-tools
+      uses: actions/upload-artifact@v4
+      with:
+        name: media-server-tools-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/media-server-tools.exe
+    
+    - name: Upload copilot-code-sharer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-code-sharer-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/copilot-code-sharer.exe
+    
+    - name: Upload copilot-chat-importer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-chat-importer-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/copilot-chat-importer.exe
+    
+    - name: Upload auto-programmer
+      uses: actions/upload-artifact@v4
+      with:
+        name: auto-programmer-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/auto-programmer.exe
+    
+    - name: Upload media-dashboard (C++)
+      uses: actions/upload-artifact@v4
+      with:
+        name: media-dashboard-windows-x64
+        path: cpp/build/bin/Release/media-dashboard.exe
+        
+  build-linux-x64:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: x86_64-unknown-linux-gnu
+        override: true
+    
+    - name: Build Rust x64 executables
+      run: cargo build --release --target x86_64-unknown-linux-gnu
+    
+    - name: Build C++ Dashboard
+      run: |
+        cd cpp
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake --build . --config Release
+    
+    - name: Upload media-server-tools
+      uses: actions/upload-artifact@v4
+      with:
+        name: media-server-tools-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/media-server-tools
+    
+    - name: Upload copilot-code-sharer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-code-sharer-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/copilot-code-sharer
+    
+    - name: Upload copilot-chat-importer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-chat-importer-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/copilot-chat-importer
+    
+    - name: Upload auto-programmer
+      uses: actions/upload-artifact@v4
+      with:
+        name: auto-programmer-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/auto-programmer
+    
+    - name: Upload media-dashboard (C++)
+      uses: actions/upload-artifact@v4
+      with:
+        name: media-dashboard-linux-x64
+        path: cpp/build/bin/media-dashboard
