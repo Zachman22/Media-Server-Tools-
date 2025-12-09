@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <thread>
 #include <chrono>
+#include <limits>
 
 namespace MediaServer {
 
@@ -20,11 +21,9 @@ Dashboard::Dashboard() : isRunning_(true) {
 Dashboard::~Dashboard() = default;
 
 void Dashboard::clearScreen() const {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
+    // Use ANSI escape sequences for cross-platform screen clearing
+    std::cout << "\033[2J\033[H";
+    std::cout.flush();
 }
 
 void Dashboard::displayBeautifulBanner() const {
@@ -261,7 +260,7 @@ void Dashboard::run() {
         
         if (std::cin.fail()) {
             std::cin.clear();
-            std::cin.ignore(10000, '\n');
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             choice = -1;
         }
         

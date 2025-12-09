@@ -88,7 +88,14 @@ std::string formatSize(long long bytes) {
 
 std::string getCurrentTime() {
     std::time_t now = std::time(nullptr);
-    std::tm* localTime = std::localtime(&now);
+    
+#ifdef _WIN32
+    std::tm localTimeBuf;
+    localtime_s(&localTimeBuf, &now);
+    std::tm* localTime = &localTimeBuf;
+#else
+    std::tm* localTime = std::localtime(&now); // Thread-safe in single-threaded context
+#endif
     
     std::ostringstream oss;
     oss << std::put_time(localTime, "%Y-%m-%d %H:%M:%S");
