@@ -99,20 +99,62 @@ auto-programmer --languages
 - ✓ Project scaffolding for web, CLI, API, and library projects
 - ✓ Support for 13+ programming languages
 
+### 5. Media Dashboard (C++) ⭐ NEW - Beautiful EXE
+A stunning C++ application with beautiful terminal UI for media server management.
+
+**Usage:**
+```bash
+media-dashboard [OPTIONS]
+```
+
+**Options:**
+- `-h, --help` - Display help message
+- `-v, --version` - Display version information
+
+**Features:**
+- 🎨 Beautiful terminal UI with colors and box-drawing characters
+- 📊 Interactive dashboard with statistics
+- 🎬 Media library browser
+- 🌐 Active connections monitor
+- 💻 System information display
+- ⚡ High-performance C++17 code
+- 🎯 Native x64 executable
+
+**Interactive Menu:**
+1. View Dashboard Statistics
+2. Browse Media Library
+3. Active Connections
+4. System Information
+5. Server Status
+0. Exit
+
+Run `media-dashboard` to launch the beautiful interactive interface!
+
 ## Building
 
 All tools are built as x64 executables for Windows and Linux.
 
-**Build locally:**
+**Build Rust tools:**
 ```bash
 cargo build --release
 ```
 
+**Build C++ Dashboard:**
+```bash
+cd cpp
+./build.sh
+```
+
 **Executables will be located in:**
+
+**Rust Tools:**
 - `target/release/media-server-tools` (or `.exe` on Windows)
 - `target/release/copilot-code-sharer` (or `.exe` on Windows)
 - `target/release/copilot-chat-importer` (or `.exe` on Windows)
 - `target/release/auto-programmer` (or `.exe` on Windows)
+
+**C++ Dashboard:**
+- `cpp/build/bin/media-dashboard` (or `.exe` on Windows)
 
 ## CI/CD
 

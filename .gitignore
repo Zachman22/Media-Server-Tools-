@@ -2,6 +2,14 @@
 /target/
 Cargo.lock
 
+# C++ build artifacts
+/cpp/build/
+/cpp/bin/
+*.o
+*.obj
+*.exe
+*.out
+
 # IDE files
 .vscode/
 .idea/
