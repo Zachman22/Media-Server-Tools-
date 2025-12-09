@@ -40,6 +40,12 @@ jobs:
       with:
         name: copilot-chat-importer-windows-x64
         path: target/x86_64-pc-windows-msvc/release/copilot-chat-importer.exe
+    
+    - name: Upload auto-programmer
+      uses: actions/upload-artifact@v4
+      with:
+        name: auto-programmer-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/auto-programmer.exe
         
   build-linux-x64:
     runs-on: ubuntu-latest
@@ -74,3 +80,9 @@ jobs:
       with:
         name: copilot-chat-importer-linux-x64
         path: target/x86_64-unknown-linux-gnu/release/copilot-chat-importer
+    
+    - name: Upload auto-programmer
+      uses: actions/upload-artifact@v4
+      with:
+        name: auto-programmer-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/auto-programmer

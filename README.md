@@ -58,6 +58,47 @@ copilot-chat-importer --export chat.txt chat.md
 copilot-chat-importer --analyze chat.txt
 ```
 
+### 4. Auto Programmer ⭐ NEW
+AI-powered code generation tool for multiple programming languages. **Trusted & Signed** code templates.
+
+**Usage:**
+```bash
+auto-programmer [OPTIONS]
+```
+
+**Options:**
+- `-h, --help` - Display help message
+- `-v, --version` - Display version information
+- `-g, --generate <lang> <file>` - Generate code template for language
+- `-p, --prompt <lang>` - Generate AI prompt for language
+- `-l, --languages` - List supported languages
+- `-s, --scaffold <type> <name>` - Scaffold a new project
+
+**Supported Languages:**
+Python, JavaScript, TypeScript, Rust, Go, Bash, PowerShell, C, C++, Java, C#, Ruby, PHP
+
+**Examples:**
+```bash
+# Generate a Python script template
+auto-programmer --generate python script.py
+
+# Generate AI prompt for Rust development
+auto-programmer --prompt rust
+
+# Scaffold a new web project
+auto-programmer --scaffold web my-app
+
+# List all supported languages
+auto-programmer --languages
+```
+
+**Features:**
+- ✓ Trusted and signed code templates
+- ✓ Best practices and proper error handling
+- ✓ AI prompt generation for any language
+- ✓ Project scaffolding for web, CLI, API, and library projects
+- ✓ Support for 13+ programming languages
+
 ## Building
 
 All tools are built as x64 executables for Windows and Linux.
@@ -71,6 +112,7 @@ cargo build --release
 - `target/release/media-server-tools` (or `.exe` on Windows)
 - `target/release/copilot-code-sharer` (or `.exe` on Windows)
 - `target/release/copilot-chat-importer` (or `.exe` on Windows)
+- `target/release/auto-programmer` (or `.exe` on Windows)
 
 ## CI/CD
 

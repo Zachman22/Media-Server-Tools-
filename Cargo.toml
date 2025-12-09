@@ -15,4 +15,8 @@ path = "src/code_sharer.rs"
 name = "copilot-chat-importer"
 path = "src/chat_importer.rs"
 
+[[bin]]
+name = "auto-programmer"
+path = "src/auto_programmer.rs"
+
 [dependencies]
