@@ -1,0 +1,52 @@
+name: Build x64 Executable
+
+on:
+  push:
+    branches: [ main, copilot/build-x64-executable ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-windows-x64:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: x86_64-pc-windows-msvc
+        override: true
+    
+    - name: Build x64 executable
+      run: cargo build --release --target x86_64-pc-windows-msvc
+    
+    - name: Upload x64 executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: media-server-tools-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/media-server-tools.exe
+        
+  build-linux-x64:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        target: x86_64-unknown-linux-gnu
+        override: true
+    
+    - name: Build x64 executable
+      run: cargo build --release --target x86_64-unknown-linux-gnu
+    
+    - name: Upload x64 executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: media-server-tools-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/media-server-tools

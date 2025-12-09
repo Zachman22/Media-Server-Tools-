@@ -1,0 +1,10 @@
+[package]
+name = "media-server-tools"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "media-server-tools"
+path = "src/main.rs"
+
+[dependencies]
