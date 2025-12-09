@@ -20,14 +20,26 @@ jobs:
         target: x86_64-pc-windows-msvc
         override: true
     
-    - name: Build x64 executable
+    - name: Build x64 executables
       run: cargo build --release --target x86_64-pc-windows-msvc
     
-    - name: Upload x64 executable
+    - name: Upload media-server-tools
       uses: actions/upload-artifact@v4
       with:
         name: media-server-tools-windows-x64
         path: target/x86_64-pc-windows-msvc/release/media-server-tools.exe
+    
+    - name: Upload copilot-code-sharer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-code-sharer-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/copilot-code-sharer.exe
+    
+    - name: Upload copilot-chat-importer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-chat-importer-windows-x64
+        path: target/x86_64-pc-windows-msvc/release/copilot-chat-importer.exe
         
   build-linux-x64:
     runs-on: ubuntu-latest
@@ -42,11 +54,23 @@ jobs:
         target: x86_64-unknown-linux-gnu
         override: true
     
-    - name: Build x64 executable
+    - name: Build x64 executables
       run: cargo build --release --target x86_64-unknown-linux-gnu
     
-    - name: Upload x64 executable
+    - name: Upload media-server-tools
       uses: actions/upload-artifact@v4
       with:
         name: media-server-tools-linux-x64
         path: target/x86_64-unknown-linux-gnu/release/media-server-tools
+    
+    - name: Upload copilot-code-sharer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-code-sharer-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/copilot-code-sharer
+    
+    - name: Upload copilot-chat-importer
+      uses: actions/upload-artifact@v4
+      with:
+        name: copilot-chat-importer-linux-x64
+        path: target/x86_64-unknown-linux-gnu/release/copilot-chat-importer

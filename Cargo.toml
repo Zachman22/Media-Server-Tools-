@@ -7,4 +7,12 @@ edition = "2021"
 name = "media-server-tools"
 path = "src/main.rs"
 
+[[bin]]
+name = "copilot-code-sharer"
+path = "src/code_sharer.rs"
+
+[[bin]]
+name = "copilot-chat-importer"
+path = "src/chat_importer.rs"
+
 [dependencies]
