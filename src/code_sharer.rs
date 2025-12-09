@@ -112,10 +112,12 @@ fn list_files(dir_path: &str) {
                             let ext = extension.to_string_lossy();
                             if is_code_file(&ext) {
                                 count += 1;
-                                println!("  {} ({})", 
-                                    path.file_name().unwrap().to_string_lossy(),
-                                    ext
-                                );
+                                if let Some(file_name) = path.file_name() {
+                                    println!("  {} ({})", 
+                                        file_name.to_string_lossy(),
+                                        ext
+                                    );
+                                }
                             }
                         }
                     }

@@ -84,21 +84,17 @@ fn import_chat(file_path: &str) {
             
             let lines: Vec<&str> = content.lines().collect();
             let mut message_count = 0;
-            let mut current_speaker = "";
             
             for line in &lines {
                 if line.starts_with("User:") || line.starts_with("user:") {
                     message_count += 1;
-                    current_speaker = "User";
-                    println!("\n[{}] {}", current_speaker, &line[5..].trim());
+                    println!("\n[User] {}", &line[5..].trim());
                 } else if line.starts_with("Copilot:") || line.starts_with("copilot:") {
                     message_count += 1;
-                    current_speaker = "Copilot";
-                    println!("\n[{}] {}", current_speaker, &line[8..].trim());
+                    println!("\n[Copilot] {}", &line[8..].trim());
                 } else if line.starts_with("Assistant:") || line.starts_with("assistant:") {
                     message_count += 1;
-                    current_speaker = "Assistant";
-                    println!("\n[{}] {}", current_speaker, &line[10..].trim());
+                    println!("\n[Assistant] {}", &line[10..].trim());
                 } else if !line.trim().is_empty() {
                     println!("  {}", line);
                 }
@@ -202,7 +198,13 @@ fn analyze_chat(file_path: &str) {
             println!("  Copilot messages:    {}", copilot_messages);
             println!("  Total messages:      {}", user_messages + copilot_messages);
             println!("  Total words:         {}", total_words);
-            println!("  Code blocks:         {}", code_blocks / 2); // Divide by 2 for open/close pairs
+            // Count matching pairs of code blocks (``` markers)
+            let code_block_pairs = if code_blocks % 2 == 0 {
+                code_blocks / 2
+            } else {
+                (code_blocks / 2) + 1 // Account for unclosed code block
+            };
+            println!("  Code blocks:         {} (markers: {})", code_block_pairs, code_blocks);
             println!("  Characters:          {}", content.len());
             println!("{}", "=".repeat(60));
         }
