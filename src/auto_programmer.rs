@@ -226,31 +226,31 @@ fn scaffold_project(project_type: &str, name: &str) {
 }
 
 fn scaffold_web_project(name: &str) {
-    let _ = fs::create_dir_all(format!("{}/src", name));
-    let _ = fs::create_dir_all(format!("{}/public", name));
-    let _ = fs::write(format!("{}/README.md", name), format!("# {}\n\nWeb application project", name));
-    let _ = fs::write(format!("{}/src/index.html", name), get_html_template());
-    let _ = fs::write(format!("{}/src/style.css", name), get_css_template());
-    let _ = fs::write(format!("{}/src/app.js", name), get_javascript_template());
+    fs::create_dir_all(format!("{}/src", name)).ok();
+    fs::create_dir_all(format!("{}/public", name)).ok();
+    fs::write(format!("{}/README.md", name), format!("# {}\n\nWeb application project", name)).ok();
+    fs::write(format!("{}/src/index.html", name), get_html_template()).ok();
+    fs::write(format!("{}/src/style.css", name), get_css_template()).ok();
+    fs::write(format!("{}/src/app.js", name), get_javascript_template()).ok();
 }
 
 fn scaffold_cli_project(name: &str) {
-    let _ = fs::create_dir_all(format!("{}/src", name));
-    let _ = fs::write(format!("{}/README.md", name), format!("# {}\n\nCLI application project", name));
-    let _ = fs::write(format!("{}/src/main.py", name), get_python_template());
+    fs::create_dir_all(format!("{}/src", name)).ok();
+    fs::write(format!("{}/README.md", name), format!("# {}\n\nCLI application project", name)).ok();
+    fs::write(format!("{}/src/main.py", name), get_python_template()).ok();
 }
 
 fn scaffold_api_project(name: &str) {
-    let _ = fs::create_dir_all(format!("{}/src", name));
-    let _ = fs::write(format!("{}/README.md", name), format!("# {}\n\nAPI server project", name));
-    let _ = fs::write(format!("{}/src/server.js", name), get_api_template());
+    fs::create_dir_all(format!("{}/src", name)).ok();
+    fs::write(format!("{}/README.md", name), format!("# {}\n\nAPI server project", name)).ok();
+    fs::write(format!("{}/src/server.js", name), get_api_template()).ok();
 }
 
 fn scaffold_library_project(name: &str) {
-    let _ = fs::create_dir_all(format!("{}/src", name));
-    let _ = fs::create_dir_all(format!("{}/tests", name));
-    let _ = fs::write(format!("{}/README.md", name), format!("# {}\n\nLibrary project", name));
-    let _ = fs::write(format!("{}/src/lib.rs", name), get_rust_lib_template());
+    fs::create_dir_all(format!("{}/src", name)).ok();
+    fs::create_dir_all(format!("{}/tests", name)).ok();
+    fs::write(format!("{}/README.md", name), format!("# {}\n\nLibrary project", name)).ok();
+    fs::write(format!("{}/src/lib.rs", name), get_rust_lib_template()).ok();
 }
 
 // Template generators
@@ -446,6 +446,7 @@ fn get_cpp_template() -> String {
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 int main(int argc, char* argv[]) {
     std::cout << "Hello from Auto Programmer!" << std::endl;
